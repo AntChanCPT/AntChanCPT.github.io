@@ -1,0 +1,36 @@
+---
+title: "LeafletMap"
+author: "AntChanCPT"
+date: "28/06/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Interactive Map of Brighton, UK
+
+Below is an interactive map of Brighton, UK with 10 random locations.
+
+```{r brighton map}
+library(leaflet)
+mapMarker <- makeIcon(
+    iconUrl = "https://www.cp-desk.com/wp-content/uploads/2019/02/map-marker-free-download-png.png",
+    iconWidth = 31*215/230,
+    iconHeight = 31,
+    iconAnchorX = 31*215/230/2,
+    iconAnchorY = 16
+)
+
+set.seed(28062021)
+brighton <- data.frame(lat = runif(10, min = 50.82332, max = 50.831820), 
+                       lng = runif(10, min = -0.150404, max = -0.145382))
+
+brighton %>% 
+    leaflet() %>%
+    addTiles() %>%
+    addMarkers(icon = mapMarker)
+```
+
+
